@@ -1,0 +1,20 @@
+[workspace]
+name = "postpreserve"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "osx-64", "linux-64"]
+
+[dependencies]
+python = "3.12.*"
+
+[pypi-dependencies]
+postpreserve = { path = ".", editable = true }
+pytest = "*"
+ruff = "*"
+
+[tasks]
+doctor = { cmd = "python -m postpreserve doctor" }
+archive = { cmd = "python -m postpreserve archive" }
+validate = { cmd = "python -m postpreserve validate" }
+inspect = { cmd = "python -m postpreserve inspect" }
+lint = { cmd = "ruff check src tests" }
+test = { cmd = "pytest" }

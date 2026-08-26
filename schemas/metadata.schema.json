@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PostPreserve metadata",
+  "type": "object",
+  "required": [
+    "identifier",
+    "platform",
+    "platform_code",
+    "original_url",
+    "normalized_url",
+    "source_identifier",
+    "shortcode",
+    "post_type",
+    "capture_status"
+  ],
+  "properties": {
+    "identifier": {"type": ["string", "null"]},
+    "platform": {"type": ["string", "null"]},
+    "platform_code": {"type": ["string", "null"]},
+    "original_url": {"type": ["string", "null"]},
+    "normalized_url": {"type": ["string", "null"]},
+    "source_identifier": {"type": ["string", "null"]},
+    "shortcode": {"type": ["string", "null"]},
+    "post_type": {"type": ["string", "null"]},
+    "profile_name": {"type": ["string", "null"]},
+    "profile_username": {"type": ["string", "null"]},
+    "caption": {"type": ["string", "null"]},
+    "publication_date": {"type": ["string", "null"]},
+    "capture_date": {"type": ["string", "null"]},
+    "capture_started_at": {"type": ["string", "null"]},
+    "capture_finished_at": {"type": ["string", "null"]},
+    "capture_tool": {"type": ["string", "null"]},
+    "capture_tool_version": {"type": ["string", "null"]},
+    "browser": {"type": ["string", "null"]},
+    "browser_version": {"type": ["string", "null"]},
+    "media_count_detected": {"type": ["integer", "null"]},
+    "media_count_captured": {"type": ["integer", "null"]},
+    "content_language": {"type": ["string", "null"]},
+    "page_title": {"type": ["string", "null"]},
+    "capture_status": {"type": ["string", "null"]},
+    "access_conditions": {"type": ["string", "null"]},
+    "technical_notes": {"type": ["string", "null"]},
+    "quality": {"type": "object"}
+  },
+  "additionalProperties": true
+}
+

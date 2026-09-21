@@ -31,6 +31,7 @@ def build_metadata(
     access_conditions: str | None = None,
     technical_notes: str | None = None,
 ) -> dict:
+    """Assemble the metadata.json dict describing a captured post."""
     now = datetime.now(UTC).isoformat()
     return {
         "identifier": identifier,
@@ -63,11 +64,13 @@ def build_metadata(
 
 
 def save_json(path: Path, payload: dict) -> None:
+    """Write `payload` as pretty-printed JSON, creating parent directories as needed."""
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def validate_metadata(metadata: dict, schema_path: Path) -> list[str]:
+    """Check `metadata` against the JSON schema at `schema_path` and return error messages."""
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
     errors: list[str] = []
     for key in schema["required"]:

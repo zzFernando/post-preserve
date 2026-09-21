@@ -6,6 +6,8 @@ from urllib.parse import urlparse, urlunparse
 
 @dataclass(frozen=True)
 class NormalizedURL:
+    """A validated Instagram post/reel URL, canonicalized to its shortcode form."""
+
     original: str
     normalized: str
     platform: str
@@ -14,6 +16,10 @@ class NormalizedURL:
 
 
 def normalize_instagram_url(url: str) -> NormalizedURL:
+    """Validate an Instagram post/reel URL and normalize it to https://www.instagram.com/<kind>/<shortcode>/.
+
+    Raises ValueError if the URL isn't a recognized Instagram post/reel link.
+    """
     parsed = urlparse(url.strip())
     if parsed.scheme not in {"http", "https"}:
         raise ValueError("URL must use http or https")

@@ -15,11 +15,10 @@ def test_metadata_validation(tmp_path: Path):
         post_type="post",
         page_title=None,
         capture_status="complete",
-        capture_tool="browsertrix",
+        capture_tool="scoop",
         capture_tool_version=None,
         browser=None,
         browser_version=None,
     )
     errors = validate_metadata(meta, Path("schemas/metadata.schema.json"))
     assert errors == []
-

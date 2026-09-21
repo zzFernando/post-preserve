@@ -11,9 +11,12 @@ IDENTIFIER_RE = re.compile(r"^PP-IG-(\d{4})-(\d{6})$")
 
 @dataclass
 class IdentifierStore:
+    """SQLite-backed allocator of sequential per-year archive identifiers."""
+
     db_path: Path
 
     def ensure(self) -> None:
+        """Create the identifier sequence table if it doesn't exist yet."""
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
@@ -23,6 +26,7 @@ class IdentifierStore:
             conn.commit()
 
     def allocate(self, prefix: str, platform_code: str, year: int | None = None) -> str:
+        """Atomically allocate the next sequence number and return an identifier like PP-IG-2026-000001."""
         year = year or datetime.now(UTC).year
         self.ensure()
         with sqlite3.connect(self.db_path, timeout=30) as conn:
@@ -41,4 +45,5 @@ class IdentifierStore:
 
 
 def validate_identifier(identifier: str) -> bool:
+    """Return True if `identifier` matches the PP-IG-YYYY-NNNNNN format."""
     return bool(IDENTIFIER_RE.match(identifier))

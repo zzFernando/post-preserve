@@ -5,6 +5,7 @@ platforms = ["osx-arm64", "osx-64", "linux-64"]
 
 [dependencies]
 python = "3.12.*"
+nodejs = "20.*"
 
 [pypi-dependencies]
 postpreserve = { path = ".", editable = true }
@@ -12,6 +13,8 @@ pytest = "*"
 ruff = "*"
 
 [tasks]
+npm-install = { cmd = "npm install", env = { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1" } }
+setup = { cmd = "npx playwright install chromium-headless-shell", depends-on = ["npm-install"] }
 doctor = { cmd = "python -m postpreserve doctor" }
 archive = { cmd = "python -m postpreserve archive" }
 validate = { cmd = "python -m postpreserve validate" }

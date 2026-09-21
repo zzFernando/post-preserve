@@ -218,7 +218,10 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+.DS_Store
+
 # PostPreserve
+node_modules/
 profiles/
 workspace/
 *.wacz

@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "@harvard-lil/scoop": "0.6.58"
+  }
+}
